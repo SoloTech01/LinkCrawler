@@ -270,7 +270,8 @@ def program_intro():
 Benefits:
 	Saves time and effort
 	Accurate and reliable info
-	Autosaves URLs files to your device {RESET}""")
+	Autosaves URLs files to your device 
+ NOTE: CHECK YOUR CURRENT WORKING DIRECTORY FOR Internal_urls.txt AND External_urls.txt files AFTER USING THIS TOOL TO EXTRACT LINKS{RESET}""")
 			print(GREEN)
 			print("Refreshing in 10 secs......")
 			print(RESET)
