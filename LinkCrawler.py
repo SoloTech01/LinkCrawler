@@ -1,3 +1,19 @@
+import colorama
+import os
+import time
+colorama.init()
+GREEN = colorama.Fore.GREEN
+GRAY = colorama.Fore.LIGHTBLACK_EX
+RESET = colorama.Fore.RESET
+YELLOW = colorama.Fore.YELLOW
+BLUE = colorama.Fore.LIGHTBLUE_EX
+RED = colorama.Fore.RED
+print(RED)
+print("WARNING: REQUESTING A WEBSITE MANY TIMES IN A SHORT PERIOD MAY CAUSE THE WEBSITE TO BLOCK YOUR ADDRESS! \n TOO MUCH REQUESTS CAN CROWD THE SERVER AND I WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS TOOL")
+print(".......")
+print(RESET)
+time.sleep(5)
+
 import os
 import bs4
 import colorama
