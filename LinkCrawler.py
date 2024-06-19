@@ -8,6 +8,16 @@ RESET = colorama.Fore.RESET
 YELLOW = colorama.Fore.YELLOW
 BLUE = colorama.Fore.LIGHTBLUE_EX
 RED = colorama.Fore.RED
+print(f""" {GREEN}
+
+╭╮╱╱╱╱╱╱╭╮╱╱╭━━━╮╱╭━━━┳╮╭╮╭┳╮╱╱╭━━━┳━━━╮
+┃┃╱╱╱╱╱╱┃┃╱╱┃╭━╮┃╱┃╭━╮┃┃┃┃┃┃┃╱╱┃╭━━┫╭━╮┃
+┃┃╱╱╭┳━╮┃┃╭╮┃┃╱╰╋━┫┃╱┃┃┃┃┃┃┃┃╱╱┃╰━━┫╰━╯┃
+┃┃╱╭╋┫╭╮┫╰╯╯┃┃╱╭┫╭┫╰━╯┃╰╯╰╯┃┃╱╭┫╭━━┫╭╮╭╯
+┃╰━╯┃┃┃┃┃╭╮╮┃╰━╯┃┃┃╭━╮┣╮╭╮╭┫╰━╯┃╰━━┫┃┃╰╮
+╰━━━┻┻╯╰┻╯╰╯╰━━━┻╯╰╯╱╰╯╰╯╰╯╰━━━┻━━━┻╯╰━╯
+""")
+	print(RESET)
 print(RED)
 print("WARNING: REQUESTING A WEBSITE MANY TIMES IN A SHORT PERIOD MAY CAUSE THE WEBSITE TO BLOCK YOUR ADDRESS! \n TOO MUCH REQUESTS CAN CROWD THE SERVER AND I WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS TOOL")
 print(".......")
