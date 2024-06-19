@@ -18,4 +18,6 @@ pip install -r requirements.txt
 
 python3 LinkCrawler.py
 
+THIS TOOL WILL SAVE THE URLs FILE IN YOUR CURRENT WORKING DIRECTORY
+
 
