@@ -1,4 +1,4 @@
-HOW TO USE LINK CRAWLER ON TERMUX:
+HOW TO USE LINKCRAWLER ON TERMUX:
 
 Download termux from playstore or f-droid.org
 
