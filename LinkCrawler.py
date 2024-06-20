@@ -280,12 +280,15 @@ Benefits:
 			time.sleep(10)
 	elif response.strip() == "3":
 		print(GREEN)
-		print("Updating LinkCrawler....")
-		print(RESET)
+		print(f"Updating LinkCrawler.....{RESET}")
 		time.sleep(2)
-		response = requests.get("https://github.com/SoloTech01/LinkCrawler")
-		with open("LinkCrawler" , "w") as f:
-				f.write(response.text)
+		os.system("""
+			cd -
+			rm -rf LinkCrawler
+			git clone https://github.com/SoloTech01/LinkCrawler
+			cd LinkCrawler
+			python3 LinkCrawler.py
+			""")
 
 	elif response.strip() == "4":
 			time.sleep(2)
