@@ -17,7 +17,6 @@ print(f""" {GREEN}
 ┃╰━╯┃┃┃┃┃╭╮╮┃╰━╯┃┃┃╭━╮┣╮╭╮╭┫╰━╯┃╰━━┫┃┃╰╮
 ╰━━━┻┻╯╰┻╯╰╯╰━━━┻╯╰╯╱╰╯╰╯╰╯╰━━━┻━━━┻╯╰━╯
 """)
-print(RESET)
 print(RED)
 print("WARNING: REQUESTING A WEBSITE MANY TIMES IN A SHORT PERIOD MAY CAUSE THE WEBSITE TO BLOCK YOUR ADDRESS! \n TOO MUCH REQUESTS CAN CROWD THE SERVER AND I WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS TOOL")
 print(".......")
@@ -100,6 +99,9 @@ def program_intro():
 ┃╰━╯┃┃┃┃┃╭╮╮┃╰━╯┃┃┃╭━╮┣╮╭╮╭┫╰━╯┃╰━━┫┃┃╰╮
 ╰━━━┻┻╯╰┻╯╰╯╰━━━┻╯╰╯╱╰╯╰╯╰╯╰━━━┻━━━┻╯╰━╯
 """)
+	print(RESET)
+	print(YELLOW)
+	print(f"""{GREEN}IMPORTANT{RESET}: {YELLOW}I CAN'T EMPHASIZE THIS ENOUGH,AFTER EXTRACTING LINKS USING THIS TOOL,CHECK YOUR CURRENT WORKING DIRECTORY FOR THE INTERNAL AND EXTERNAL URLs FILES: {Path.cwd()}""")
 	print(RESET)
 	print(YELLOW)
 	print(f""""[+]Author: Solomon Adenuga
@@ -189,7 +191,7 @@ def program_intro():
 				print("An error occured!")
 				print(GREEN)
 				print("Detecting error.....")
-				time.sleep(2)#
+				time.sleep(2)
 				print(RED)
 				print(f"Error: {too} \nConfirm that you entered a valid url and a valid integer for number of crawls!")
 				print(RESET)
@@ -270,8 +272,7 @@ def program_intro():
 Benefits:
 	Saves time and effort
 	Accurate and reliable info
-	Autosaves URLs files to your device 
- NOTE: CHECK YOUR CURRENT WORKING DIRECTORY FOR Internal_urls.txt AND External_urls.txt files AFTER USING THIS TOOL TO EXTRACT LINKS{RESET}""")
+	Autosaves URLs files to your device {RESET}""")
 			print(GREEN)
 			print("Refreshing in 10 secs......")
 			print(RESET)
