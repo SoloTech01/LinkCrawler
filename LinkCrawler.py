@@ -145,9 +145,8 @@ def email_harvester():
 	feedback = input('=====' * 6 + 'Enter a number:' + '=====' * 6 + RESET)
 	if feedback.strip() == "1":
 		try:
-			start_url = input(f"{BLUE}Enter target URL(Example: https://www.website.com): ")
-			depth_level = int(input("Enter depth level(an integer): "))
-			print(RESET)
+			start_url = input(f"{BLUE}Enter target URL(Example: https://www.website.com){RESET}: ")
+			depth_level = int(input(f"{BLUE}Enter depth level(an integer):{RESET} "))
 			emails = crawl_and_extract_emails(start_url, depth_level)
 			for email in emails:
 				print(f"EMAILS:\n {GREEN} {email} {RESET}")
