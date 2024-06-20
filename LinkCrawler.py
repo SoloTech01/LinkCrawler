@@ -180,6 +180,7 @@ def program_intro():
 	print(RESET)
 	print(YELLOW)
 	print(f""""[+]Author: Solomon Adenuga
+[+] Version: 1.1
 [+] Github: https://github.com/SoloTech01
 [+] Whatsappp: +2348023710562""")
 	print("=====" * 6)
