@@ -284,7 +284,7 @@ Benefits:
 		print(RESET)
 		time.sleep(2)
 		response = requests.get("https://github.com/SoloTech01/LinkCrawler")
-			with open("LinkCrawler" , "w") as f:
+		with open("LinkCrawler" , "w") as f:
 				f.write(response.text)
 
 	elif response.strip() == "4":
