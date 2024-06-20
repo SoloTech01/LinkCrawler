@@ -31,6 +31,7 @@ from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 import time
 import sys
+import re
 from pathlib import Path
 
 os.system("clear")
@@ -88,6 +89,80 @@ def crawl(url, max_urls):
 			break
 		crawl(link, max_urls = max_urls)
 		
+def extract_emails(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status() 
+        
+    except requests.RequestException as e:
+        print(f"{RED}Request failed: {e}{RESET}")
+        return []
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', soup.get_text())
+    return set(emails) 
+    
+def crawl_and_extract_emails(start_url, depth):
+    urls_to_crawl = {start_url}
+    crawled_urls = set()
+    extracted_emails = set()
+
+    for _ in range(depth):
+        new_urls = set()
+        for url in urls_to_crawl:
+            if url not in crawled_urls:
+                print(GREEN)
+                print(f"Crawling: {url}")
+                print(RESET)
+                emails = extract_emails(url)
+                extracted_emails.update(emails)
+                crawled_urls.add(url)
+                
+                try:
+                    response = requests.get(url)
+                    response.raise_for_status()
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    for link in soup.find_all('a', href=True):
+                        new_url = link['href']
+                        if new_url.startswith('http'):
+                            new_urls.add(new_url)
+                        else:
+                            new_urls.add(requests.compat.urljoin(url, new_url))
+                except requests.RequestException as e:
+                    print(f"Failed to retrieve links from {url}: {e}")
+
+        urls_to_crawl = new_urls - crawled_urls
+
+    return extracted_emails
+    
+def email_harvester():
+	print(YELLOW)
+	print(""""
+[1] Extract from one link
+[2] Extract from multiple links(Coming Soon....)
+""")
+	print(GREEN)
+	feedback = input('=====' * 6 + 'Enter a number:' + '=====' * 6 + RESET)
+	if feedback.strip() == "1":
+		try:
+			start_url = input(f"{BLUE}Enter target URL(Example: https://www.website.com): ")
+			depth_level = int(input("Enter depth level(an integer): "))
+			print(RESET)
+			emails = crawl_and_extract_emails(start_url, depth_level)
+			for email in emails:
+				print(f"EMAILS:\n {GREEN} {email} {RESET}")
+			print(YELLOW)
+			refresh= input(f"Enter 'r' to refresh the tool: ")
+			if refresh.lower().strip() == "r":
+				print(f"{GREEN}Refreshing.....{RESET}")
+				time.sleep(2)
+				program_intro()
+		except:
+			print(RED)
+			time.sleep(2)
+			print("An error occured!")
+			print(RESET)
+		
 def program_intro():
 	os.system("clear")
 	print(f""" {GREEN}
@@ -101,7 +176,7 @@ def program_intro():
 """)
 	print(RESET)
 	print(YELLOW)
-	print(f"""{GREEN}IMPORTANT{RESET}: {YELLOW}I CAN'T EMPHASIZE THIS ENOUGH,AFTER EXTRACTING LINKS USING THIS TOOL,CHECK YOUR CURRENT WORKING DIRECTORY FOR THE INTERNAL AND EXTERNAL URLs FILES: {Path.cwd()}""")
+	print(f"""{GREEN}IMPORTANT{RESET}: {YELLOW}AFTER EXTRACTING LINKS USING THIS TOOL,CHECK YOUR CURRENT WORKING DIRECTORY FOR THE INTERNAL AND EXTERNAL URLs FILES: {Path.cwd()}""")
 	print(RESET)
 	print(YELLOW)
 	print(f""""[+]Author: Solomon Adenuga
@@ -110,9 +185,11 @@ def program_intro():
 	print("=====" * 6)
 	print(f"""
 [1] Website link Extractor
-[2] About the tool
-[3] Update the tool
-[4] Exit the tool
+[2] Email Harvester
+[3] Bulk mail spammer(Coming Soon....)
+[4] About the tool
+[5] Update the tool
+[6] Exit the tool
 {RESET}""")
 	print(GREEN)
 	response = input('=====' * 6 + 'Enter a number:' + '=====' * 6 + RESET)
@@ -120,7 +197,7 @@ def program_intro():
 		valid = False
 		while not valid:
 			try:
-				url = input(f"{BLUE}Enter website to extract links from (example = https://www.google.com) : {RESET}")
+				url = input(f"{BLUE}Enter website to extract links from (example = https://www.website.com) : {RESET}")
 				print(BLUE)
 				max_urls = int(input(f"Enter number of urls to crawl: {RESET}"))
 				
@@ -269,16 +346,19 @@ def program_intro():
 				print(f"Error: {pro} \nConfirm that you entered a valid url and a valid integer for number of crawls!")
 				print(RESET)
 	elif response.strip() == "2":
-			print(f""" {YELLOW}Link Crawler is a tool that extracts links from a website saving you time and effort
+		email_harvester()
+	elif response.strip() == "4":
+		print(f""" {YELLOW}LinkCrawler is a tool that extracts links and emails from a website
 Benefits:
 	Saves time and effort
-	Accurate and reliable info
-	Autosaves URLs files to your device {RESET}""")
-			print(GREEN)
-			print("Refreshing in 10 secs......")
-			print(RESET)
-			time.sleep(10)
-	elif response.strip() == "3":
+	For ads campaign
+	Autosaves URLs files to your device
+ {RESET}""")
+		print(GREEN)
+		print("Refreshing in 10 secs......")
+		print(RESET)
+		time.sleep(10)
+	elif response.strip() == "5":
 		print(GREEN)
 		print(f"Updating LinkCrawler.....{RESET}")
 		time.sleep(2)
