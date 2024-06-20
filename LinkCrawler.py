@@ -111,7 +111,8 @@ def program_intro():
 	print(f"""
 [1] Website link Extractor
 [2] About the tool
-[3] Exit the tool
+[3] Update the tool
+[4] Exit the tool
 {RESET}""")
 	print(GREEN)
 	response = input('=====' * 6 + 'Enter a number:' + '=====' * 6 + RESET)
@@ -278,6 +279,15 @@ Benefits:
 			print(RESET)
 			time.sleep(10)
 	elif response.strip() == "3":
+		print(GREEN)
+		print("Updating LinkCrawler....")
+		print(RESET)
+		time.sleep(2)
+		response = requests.get("https://github.com/SoloTech01/LinkCrawler")
+			with open("LinkCrawler" , "w") as f:
+				f.write(response.text)
+
+	elif response.strip() == "4":
 			time.sleep(2)
 			print(f"{RED}PROGRAM TERMINATED!{RESET}")
 			sys.exit()
