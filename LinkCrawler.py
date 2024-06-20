@@ -18,7 +18,7 @@ print(f""" {GREEN}
 ╰━━━┻┻╯╰┻╯╰╯╰━━━┻╯╰╯╱╰╯╰╯╰╯╰━━━┻━━━┻╯╰━╯
 """)
 print(RED)
-print("WARNING: USE THIS TOOL ONLY FOR EDUCATIONAL PURPOSES \nREQUESTING A WEBSITE MANY TIMES IN A SHORT PERIOD MAY CAUSE THE WEBSITE TO BLOCK YOUR ADDRESS! \n TOO MUCH REQUESTS CAN CROWD THE SERVER AND I WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS TOOL")
+print("WARNING: REQUESTING A WEBSITE MANY TIMES IN A SHORT PERIOD MAY CAUSE THE WEBSITE TO BLOCK YOUR ADDRESS! \n TOO MUCH REQUESTS CAN CROWD THE SERVER AND I WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS TOOL")
 print(".......")
 print(RESET)
 time.sleep(5)
@@ -145,11 +145,11 @@ def email_harvester():
 	feedback = input('=====' * 6 + 'Enter a number:' + '=====' * 6 + RESET)
 	if feedback.strip() == "1":
 		try:
-			start_url = input(f"{BLUE}Enter target URL(Example: https://www.website.com){RESET}: ")
-			depth_level = int(input(f"{BLUE}Enter depth level(an integer):{RESET} "))
+			start_url = input(f"{BLUE}Enter target URL(Example: https://www.website.com):{RESET} ")
+			depth_level = int(input(f"{BLUE}Enter depth level(an integer,Minimum is 2):{RESET} "))
 			emails = crawl_and_extract_emails(start_url, depth_level)
 			for email in emails:
-				print(f"EMAILS:\n {GREEN} {email} {RESET}")
+				print(email)
 			print(YELLOW)
 			refresh= input(f"Enter 'r' to refresh the tool: ")
 			if refresh.lower().strip() == "r":
@@ -179,7 +179,6 @@ def program_intro():
 	print(RESET)
 	print(YELLOW)
 	print(f""""[+]Author: Solomon Adenuga
-[+] Version: 1.1
 [+] Github: https://github.com/SoloTech01
 [+] Whatsappp: +2348023710562""")
 	print("=====" * 6)
