@@ -374,6 +374,11 @@ Benefits:
 			time.sleep(2)
 			print(f"{RED}PROGRAM TERMINATED!{RESET}")
 			sys.exit()
+	elif response.strip() =="6":
+		time.sleep(1)
+		print(f"{RED}PROGRAM TERMINATED!{RESET}")
+		time.sleep(1)
+		sys.exit()
 
 while True:
 	program_intro()
