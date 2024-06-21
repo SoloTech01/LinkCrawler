@@ -369,11 +369,6 @@ Benefits:
 			cd LinkCrawler
 			python3 LinkCrawler.py
 			""")
-
-	elif response.strip() == "4":
-			time.sleep(2)
-			print(f"{RED}PROGRAM TERMINATED!{RESET}")
-			sys.exit()
 	elif response.strip() =="6":
 		time.sleep(1)
 		print(f"{RED}PROGRAM TERMINATED!{RESET}")
