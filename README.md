@@ -8,9 +8,9 @@ Open termux and run the following commands:
 
 pkg update && apt upgrade
 
-pkg install pip
-
 pkg install git
+
+pkg install pip
 
 pkg install python3
 
