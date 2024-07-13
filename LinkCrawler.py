@@ -26,6 +26,9 @@ time.sleep(5)
 import os
 import bs4
 import colorama
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import requests
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
@@ -161,6 +164,52 @@ def email_harvester():
 			time.sleep(2)
 			print("An error occured!")
 			print(RESET)
+
+def spammer():
+	addr = "mattrexxie1@outlook.com"
+	password = "vmtrupe4#3"
+	
+	subject = input(f"{YELLOW}Enter subject of the mail:{RESET} ")
+	message_body = input(f"{YELLOW}Enter message: {RESET}")
+	sender = input(f"{YELLOW}Enter sender's name:{RESET} ")
+	emails_path = input(f"{YELLOW}Enter the email addresses file path:{RESET} ")
+	if not os.path.exists(emails_path):
+		time.sleep(3)
+		print(f"{RED}[x] File Not Found!!{RESET}")
+		time.sleep(4)
+		program_intro()
+	else:
+		print(GREEN)
+		print("\n[+] Initializing spammer....")
+		print("\n")
+		time.sleep(1)
+		server = smtplib.SMTP("smtp.office365.com", 587)
+		server.starttls()
+		server.login(addr, password)
+		with open(emails_path, "r") as file:
+			emails = file.readlines()
+			for email in emails:		
+				message = MIMEMultipart()
+				message['From'] = sender
+				message['To'] = email
+				message['Subject'] = subject
+				message.attach(MIMEText(message_body, 'plain'))
+				try:
+					server.sendmail(addr, email, message.as_string())
+					print(f"[✓] Sent mail to {email} successfully")
+				except Exception as e:
+					time.sleep(2)
+					print(f"{RED}[x] Error: {e}{RESET}")
+					time.sleep(3)
+					program_intro()
+				
+		print("\n[✓] SENT EMAILS SUCCESSFULLY")
+		server.quit()
+		time.sleep(3)
+		print("\nRefreshing.....")
+		print(RESET)
+		time.sleep(5)
+		program_intro()
 		
 def program_intro():
 	os.system("clear")
@@ -175,18 +224,18 @@ def program_intro():
 """)
 	print(RESET)
 	print(YELLOW)
-	print(f"""{GREEN}IMPORTANT{RESET}: {YELLOW}AFTER EXTRACTING LINKS USING THIS TOOL,CHECK YOUR CURRENT WORKING DIRECTORY FOR THE INTERNAL AND EXTERNAL URLs FILES:{Path.cwd()}""")
+	print(f"""{GREEN}IMPORTANT{RESET}: {YELLOW}AFTER EXTRACTING LINKS USING THIS TOOL,CHECK YOUR CURRENT WORKING DIRECTORY FOR THE INTERNAL AND EXTERNAL URLs FILES: {Path.cwd()}""")
 	print(RESET)
 	print(YELLOW)
 	print(f""""[+]Author: Solomon Adenuga
-[+] Version: 1.1
+[+] Version: 1.2
 [+] Github: https://github.com/SoloTech01
 [+] Whatsappp: +2348023710562""")
 	print("=====" * 6)
 	print(f"""
 [1] Website link Extractor
 [2] Email Harvester
-[3] Bulk mail spammer(Coming Soon....)
+[3] Bulk mail spammer
 [4] About the tool
 [5] Update the tool
 [6] Exit the tool
@@ -347,6 +396,8 @@ def program_intro():
 				print(RESET)
 	elif response.strip() == "2":
 		email_harvester()
+	elif response.strip() == "3":
+		spammer()
 	elif response.strip() == "4":
 		print(f""" {YELLOW}LinkCrawler is a tool that extracts links and emails from a website
 Benefits:
@@ -369,11 +420,11 @@ Benefits:
 			cd LinkCrawler
 			python3 LinkCrawler.py
 			""")
-	elif response.strip() =="6":
-		time.sleep(1)
-		print(f"{RED}PROGRAM TERMINATED!{RESET}")
-		time.sleep(1)
-		sys.exit()
+
+	elif response.strip() == "4":
+			time.sleep(2)
+			print(f"{RED}PROGRAM TERMINATED!{RESET}")
+			sys.exit()
 
 while True:
 	program_intro()
