@@ -178,7 +178,7 @@ def spammer():
 		print(f"{RED}[x] File Not Found!!{RESET}")
 		time.sleep(4)
 		program_intro()
-	else:
+	elif os.path.exists(emails_path):
 		print(GREEN)
 		print("\n[+] Initializing spammer....")
 		print("\n")
@@ -399,7 +399,7 @@ def program_intro():
 	elif response.strip() == "3":
 		spammer()
 	elif response.strip() == "4":
-		print(f""" {YELLOW}LinkCrawler is a tool that extracts links and emails from a website
+		print(f""" {YELLOW}LinkCrawler is a tool that extracts links and emails from a website,allows to send one mail message to multiple email addresses
 Benefits:
 	Saves time and effort
 	For ads campaign
